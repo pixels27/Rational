@@ -46,14 +46,20 @@ class Rational {
      */
     public void subtract(Rational x) {
         // to be completed
+        numerator = (numerator * x.denominator) - (x.numerator * denominator);
+        denominator = (denominator * x.denominator);
+        simplestForm();
     }
 
     /***
      * Compute a multiplication of the current rational number to another given rational number
      * @param x the rational number to be multiplied to the current rational number
      */
-    public void multiply(Rational x) { 
+    public void multiply(Rational x) {
         // to be completed
+        numerator = (numerator) * (x.numerator);
+        denominator = (denominator * x.denominator);
+        simplestForm();
     }
 
     /***
@@ -62,16 +68,25 @@ class Rational {
      */
     public void divide(Rational x) {
         // to be completed
+        numerator = (numerator * x.denominator);
+        denominator = (denominator * x.numerator);
+        simplestForm();
     }
 
     /***
      * Check if the given rational number equals to the current rational number
      * @param x the rational number to be compared to the current rational number
      * @return true if the given rational number equals to the current, false otherwise
+     *
+     * assertEquals(Object expected, Object actual) -> Assert that two objects are equal
      */
     public boolean equals(Object x) {
         // to be completed
-        return true; // TODO: This needs to be modified.
+        Rational y = new Rational();
+        if(this.numerator == y.numerator && this.denominator == y.denominator){
+            return true;
+        }
+        return false; // TODO: This needs to be modified.
     }
 
     /***
@@ -82,7 +97,24 @@ class Rational {
      */
     public long compareTo(Object x) {
         // to be completed
-        return -1; // TODO: this needs to be modified.
+        // TODO: this needs to be modified.
+        if (x instanceof Rational) {
+            // instanceof operator is used to test whether the object is an instance of the specified type
+            Rational rational = (Rational) x;
+            // rational < input number
+            if ((numerator * rational.denominator) < (denominator * rational.numerator) ){
+                return -1;
+            }
+            // rational = input number
+            else if ((numerator * rational.denominator) == (denominator * rational.numerator)) {
+                return 0;
+            }
+            // rational > input number
+            else {
+                return  1;
+            }
+        }
+        return -1;
     }
 
     /***
@@ -91,7 +123,8 @@ class Rational {
      */
     public String toString() { 
         // to be completed
-        return ""; // TODO: This needs to be modified.
+        // TODO: This needs to be modified.
+        return numerator + "/" + denominator;
     }
 
     public static void main(String[] args) {

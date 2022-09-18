@@ -19,4 +19,21 @@
     <target name="run" depends="jar">
         <java jar="build/jar/Rational.jar" fork="true"/>
     </target>
+    <!-- Step2: Create a test target which depends on the compile target.
+    <target name="test" depends="compile">
+        <junit showoutput="yes" printsummary="yes" haltonfailure="no">
+            <classpath location="build/classes" />
+            <classpath location="lib/junit-4.13.jar" /> <classpath location="lib/hamcrest-core-1.3.jar" /> <test name="RationalTest" />
+        </junit>
+    </target>-->
+    <!-- Step3: tell the junit task to create a report of running the test cases
+     by adding todir attribute with a directory name and specify the report format. -->
+    <target name="test" depends="compile"> <mkdir dir="report"/>
+        <junit showoutput="yes" printsummary="yes" haltonfailure="no"> <classpath location="build/classes" />
+            <classpath location="lib/junit-4.13.jar" />
+            <classpath location="lib/hamcrest-core-1.3.jar" />
+            <test name="RationalTest" todir="report"> <formatter type="plain" />
+                <formatter type="xml" />
+            </test> </junit>
+    </target>
 </project>
